@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hand Energy Control</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="scene-shell">
+      <video id="cameraFeed" autoplay playsinline muted></video>
+      <canvas id="overlayCanvas"></canvas>
+      <div class="hud-panel">
+        <div class="hud-top">
+          <div class="brand-card">
+            <span class="brand-logo">Ω</span>
+            <div>
+              <h1>Hand Energy Control</h1>
+              <p>Use your hands to shape neon energy, lasers, and particle storms.</p>
+            </div>
+          </div>
+          <div class="status-group">
+            <span class="status-chip">Gesture: <strong id="gestureName">Idle</strong></span>
+            <span class="status-chip">Confidence: <strong id="confidenceValue">0%</strong></span>
+            <span class="status-chip">FPS: <strong id="fpsValue">0</strong></span>
+          </div>
+        </div>
+
+        <div class="control-grid">
+          <section class="control-card">
+            <h2>Experience Controls</h2>
+            <div class="button-row">
+              <button id="startButton" class="primary">Start Experience</button>
+              <button id="stopButton" disabled>Stop</button>
+            </div>
+            <div class="button-row small">
+              <button id="fullscreenButton">Fullscreen</button>
+              <button id="snapshotButton">Snapshot</button>
+              <button id="recordButton">Record</button>
+            </div>
+            <div class="toggle-row">
+              <label><input type="checkbox" id="effectsToggle" checked /> Effects</label>
+              <label><input type="checkbox" id="soundToggle" checked /> Sound</label>
+            </div>
+          </section>
+
+          <section class="control-card">
+            <h2>Mode & Color</h2>
+            <div class="mode-buttons">
+              <button class="mode-button active" data-mode="Fire">Fire Mode</button>
+              <button class="mode-button" data-mode="Ice">Ice Mode</button>
+              <button class="mode-button" data-mode="Laser">Laser Mode</button>
+              <button class="mode-button" data-mode="Galaxy">Galaxy Mode</button>
+            </div>
+            <div class="picker-grid">
+              <label>
+                Primary Color
+                <input id="primaryColor" type="color" value="#57c7ff" />
+              </label>
+              <label>
+                Accent Color
+                <input id="accentColor" type="color" value="#ff4d80" />
+              </label>
+            </div>
+            <label class="range-label">
+              Sensitivity
+              <input id="sensitivityRange" type="range" min="0.6" max="1.4" step="0.05" value="1.0" />
+            </label>
+          </section>
+
+          <section class="control-card small-card">
+            <h2>Advanced Options</h2>
+            <div class="toggle-row vertical">
+              <label><input type="checkbox" id="trailToggle" checked /> Motion Trails</label>
+              <label><input type="checkbox" id="particleToggle" checked /> Particle Storms</label>
+              <label><input type="checkbox" id="portalToggle" checked /> Portal Effects</label>
+            </div>
+            <button id="calibrateButton">Calibrate Gesture</button>
+            <p class="note">Calibration helps the system adapt to your reach and motion speed.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
